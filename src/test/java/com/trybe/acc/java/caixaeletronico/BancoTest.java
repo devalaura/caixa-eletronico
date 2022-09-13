@@ -20,7 +20,7 @@ class BancoTest {
     assertEquals("String", novaConta.getClass().getSimpleName());
     assertEquals(12, novaConta.length());
     assertFalse(novaConta.matches("^[a-zA-Z]"));
-    assertTrue(1, banco.getContas()[novaConta].length())
+    assertTrue(banco.getContas().contains(novaConta));
   }
 
   @Test
