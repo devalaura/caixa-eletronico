@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Banco {
   private ArrayList<String> contas = new ArrayList<>();
+  private ArrayList<PessoaCliente> pessoasClientes = new ArrayList<>();
 
   /** Método para gerar um novo número, único e de 10 dígitos, para contas. */
   public String gerarNumeroNovaConta() {
@@ -25,8 +26,37 @@ public class Banco {
     }
   }
 
-  /** Método get do atributo provado contas, que armazena todas as contas. */
+  /**
+   * Método para instânciar novo objeto de pessoa cliente.
+   * 
+   * @param nome  // Recebe o nome da pessoa cliente.
+   * @param cpf   // Recebe o cpf da pessoa cliente.
+   * @param senha // Recebe a senha da pessoa cliente.
+   * 
+   */
+  public PessoaCliente adicionarPessoaCliente(String nome, String cpf, String senha) {
+    PessoaCliente novaPessoaCliente = new PessoaCliente(nome, cpf, senha);
+
+    if (this.pessoasClientes.contains(novaPessoaCliente)) {
+      return novaPessoaCliente;
+    } else {
+      this.pessoasClientes.add(novaPessoaCliente);
+
+      return novaPessoaCliente;
+    }
+
+  }
+
+  /** Método get do atributo privado contas, que armazena todas as contas. */
   public ArrayList<String> getContas() {
     return this.contas;
+  }
+
+  /**
+   * Método get do atributo privado pessoasClientes, que armazena as pessoas
+   * clientes.
+   */
+  public ArrayList<PessoaCliente> getPessoasClientes() {
+    return this.pessoasClientes;
   }
 }
