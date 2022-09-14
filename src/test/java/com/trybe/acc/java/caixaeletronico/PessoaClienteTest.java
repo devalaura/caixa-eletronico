@@ -73,7 +73,7 @@ class PessoaClienteTest {
     conta.adicionarTransacao(5500, "Depósito efetuado");
     conta.adicionarTransacao(500, "Saque efetuado");
 
-    assertEquals(5000, pessoaCliente.retornarSaldoContaEspecifica(0));
+    assertEquals(5500, pessoaCliente.retornarSaldoContaEspecifica(0));
   }
 
   @Test
