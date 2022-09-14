@@ -162,8 +162,11 @@ class PessoaClienteTest {
   @Test
   @DisplayName("20 - Testa o método Getter do atributo cpf está retornando.")
   void getCpfTest() {
-    fail("Não implementado");
+    final String cpf = "123.456.789-10";
+    PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", cpf, "SenhaSegura123");
 
+    assertEquals(cpf, pessoaCliente.getCpf());
   }
 
 }
