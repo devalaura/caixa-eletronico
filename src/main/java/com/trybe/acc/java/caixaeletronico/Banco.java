@@ -107,6 +107,24 @@ public class Banco {
     }
   }
 
+  /**
+   * Método para efetuar o saque de valores de uma conta. Este método não possui
+   * retorno.
+   * 
+   * @param pessoaCliente // Recebe a pessoa cliente responsável pela conta.
+   * @param daConta       // Recebe o índice da conta que irá ter o valor sacado.
+   * @param quantia       // Recebe o valor que será sacado.
+   */
+  public void sacar(PessoaCliente pessoaCliente, int daConta, double quantia) {
+    for (PessoaCliente pessoa : this.pessoasClientes) {
+      if (pessoa == pessoaCliente) {
+        Conta conta = pessoaCliente.getContas().get(daConta);
+
+        conta.adicionarTransacao(quantia, "Saque efetuado");
+      }
+    }
+  }
+
   /** Método get do atributo privado contas, que armazena todas as contas. */
   public ArrayList<Conta> getContas() {
     return this.contas;
