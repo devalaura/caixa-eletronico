@@ -30,7 +30,32 @@ class ContaTest {
   @Test
   @DisplayName("7 - Testa o método adicionar transação e retornar saldo da conta.")
   void adicionarTransacaoTestRetornarSaldoTest() {
-    fail("Não implementado");
+    final String nome = "Laura Ramos";
+    final String cpf = "123.456.789-10";
+    final String senha = "SenhaSegura123";
+
+    final Banco banco = new Banco();
+    final PessoaCliente pessoaCliente = new PessoaCliente(nome, cpf, senha);
+    final Conta conta = new Conta("Poupança", pessoaCliente, banco);
+
+    assertEquals(0, conta.retornarSaldo());
+    assertEquals(0, conta.getTransacoes().size());
+
+    conta.adicionarTransacao(200, "Depósito recebido");
+    assertEquals(200, conta.retornarSaldo());
+    assertEquals(1, conta.getTransacoes().size());
+
+    conta.adicionarTransacao(10, "Saque efetuado");
+    assertEquals(190, conta.retornarSaldo());
+    assertEquals(2, conta.getTransacoes().size());
+
+    conta.adicionarTransacao(50, "Transferência recebida");
+    assertEquals(240, conta.retornarSaldo());
+    assertEquals(3, conta.getTransacoes().size());
+
+    conta.adicionarTransacao(40, "Transferência efetuada");
+    assertEquals(200, conta.retornarSaldo());
+    assertEquals(4, conta.getTransacoes().size());
 
   }
 
