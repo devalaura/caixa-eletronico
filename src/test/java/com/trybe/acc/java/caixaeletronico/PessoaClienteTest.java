@@ -28,7 +28,7 @@ class PessoaClienteTest {
   @Test
   @DisplayName("12 - Testa o construtor da classe Pessoa Cliente.")
   void construtorTest() {
-    new PessoaCliente("Laura Ramos", "12345678910", "SenhaSegura123");
+    new PessoaCliente("Laura Ramos", "123.456.789-10", "SenhaSegura123");
 
     String expected = "Nova pessoa cliente Laura Ramos com CPF: 123.456.789-10 criada!";
 
