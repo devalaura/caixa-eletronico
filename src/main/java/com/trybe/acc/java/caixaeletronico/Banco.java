@@ -83,7 +83,7 @@ public class Banco {
   }
 
   /** Método get do atributo privado contas, que armazena todas as contas. */
-  public ArrayList<String> getContas() {
+  public ArrayList<Conta> getContas() {
     return this.contas;
   }
 
