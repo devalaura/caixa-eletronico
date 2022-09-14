@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Banco {
-  private ArrayList<String> contas = new ArrayList<>();
+  private ArrayList<Conta> contas = new ArrayList<>();
   private ArrayList<PessoaCliente> pessoasClientes = new ArrayList<>();
 
   /**
@@ -68,6 +68,18 @@ public class Banco {
     }
 
     return null;
+  }
+
+  /**
+   * Método para adicionar uma conta criada à lista de contas da pessoa cliente.
+   * Não possui retorno.
+   * 
+   * @param conta // Recebe a conta que deve ser adicionada à lista.
+   */
+  public void adicionarConta(Conta conta) {
+    if (!this.contas.contains(conta)) {
+      this.contas.add(conta);
+    }
   }
 
   /** Método get do atributo privado contas, que armazena todas as contas. */
