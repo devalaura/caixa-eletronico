@@ -40,6 +40,27 @@ public class Conta {
   }
 
   /**
+   * Método para calcular o saldo após transações da conta. Seu retorno é um
+   * double.
+   */
+  public double retornarSaldo() {
+    double saldo = 0;
+    for (Transacao transacao : this.transacoes) {
+      if (transacao.getDescricao().equals("Transferência recebida")) {
+        saldo += transacao.getQuantia();
+      } else if (transacao.getDescricao().equals("Transferência efetuada")) {
+        saldo -= transacao.getQuantia();
+      } else if (transacao.getDescricao().equals("Deposito efetuado")) {
+        saldo += transacao.getQuantia();
+      } else if (transacao.getDescricao().equals("Saque efetuado")) {
+        saldo -= transacao.getQuantia();
+      }
+    }
+
+    return saldo;
+  }
+
+  /**
    * Método get do atributo privado tipoConta, que armazena o tipo da conta
    * ("Poupança" ou "Corrente").
    */
