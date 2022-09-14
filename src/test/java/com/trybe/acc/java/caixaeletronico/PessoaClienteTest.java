@@ -1,11 +1,11 @@
 package com.trybe.acc.java.caixaeletronico;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
