@@ -18,7 +18,7 @@ class BancoTest {
     String novaConta = banco.gerarNumeroNovaConta();
 
     assertEquals("String", novaConta.getClass().getSimpleName());
-    assertEquals(12, novaConta.length());
+    assertEquals(10, novaConta.length());
     assertFalse(novaConta.matches("^[a-zA-Z]"));
     assertTrue(banco.getContas().contains(novaConta));
   }
