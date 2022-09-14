@@ -88,32 +88,23 @@ class BancoTest {
     final Conta contaCorrente = new Conta("Corrente", pessoaCliente, banco);
     banco.adicionarConta(contaCorrente);
 
-    assertNull(banco.transferirFundos(pessoaCliente, 1, 2, 1));
-    assertNull(banco.transferirFundos(pessoaCliente, 2, 1, 1));
-
     banco.depositar(pessoaCliente, 1, 15000);
-    banco.transferirFundos(pessoaCliente, 1, 2, 10000);
 
-    banco.mostrarSaldo(pessoaCliente, 1);
+    banco.transferirFundos(pessoaCliente, 1, 2, 10000);
+    banco.mostrarExtrato(pessoaCliente, 1);
     String esperadoPoupanca = "5000";
     assertEquals(esperadoPoupanca, output.toString());
-
-    banco.mostrarSaldo(pessoaCliente, 2);
+    banco.mostrarExtrato(pessoaCliente, 2);
     String esperadoCorrente = "10000";
     assertEquals(esperadoCorrente, output.toString());
 
     banco.transferirFundos(pessoaCliente, 2, 1, 5000);
-
-    banco.mostrarSaldo(pessoaCliente, 1);
+    banco.mostrarExtrato(pessoaCliente, 1);
     esperadoPoupanca = "10000";
     assertEquals(esperadoPoupanca, output.toString());
-
-    banco.mostrarSaldo(pessoaCliente, 2);
+    banco.mostrarExtrato(pessoaCliente, 2);
     esperadoCorrente = "5000";
     assertEquals(esperadoCorrente, output.toString());
-
-    assertNull(banco.transferirFundos(pessoaCliente, 1, 2, 10001));
-    assertNull(banco.transferirFundos(pessoaCliente, 2, 1, 5001));
   }
 
   @Test
