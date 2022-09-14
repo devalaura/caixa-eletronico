@@ -17,4 +17,24 @@ public class Transacao {
     this.quantia = quantia;
     this.descricao = descricao;
   }
+
+  /** Método get para retornar o atributo privado quantia. */
+  public double getQuantia() {
+    return this.quantia;
+  }
+
+  /** Método get para retornar o atributo privado instante. */
+  public String getInstante() {
+    return this.instante;
+  }
+
+  /** Método get para retornar o atributo privado descricao. */
+  public String getDescricao() {
+    return this.descricao;
+  }
+
+  /** Método get para retornar o atributo privado conta. */
+  public Conta getConta() {
+    return this.conta;
+  }
 }
