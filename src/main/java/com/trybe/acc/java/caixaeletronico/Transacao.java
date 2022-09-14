@@ -1,5 +1,8 @@
 package com.trybe.acc.java.caixaeletronico;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Transacao {
   private double quantia;
   private String instante;
@@ -16,6 +19,19 @@ public class Transacao {
   public Transacao(double quantia, String descricao) {
     this.quantia = quantia;
     this.descricao = descricao;
+    this.instante = this.retornarInstante();
+  }
+
+  /**
+   * Método para captura o instante em que a transação foi efetuada. Retorna uma
+   * String que representa a data no formato "dd/MM/yyyy HH:mm:ss".
+   */
+  public String retornarInstante() {
+    final LocalDateTime dataAtual = LocalDateTime.now();
+    final String dataAtualFormatada = DateTimeFormatter.ofPattern(
+        "dd/MM/yyyy HH:mm:ss").format(dataAtual);
+
+    return dataAtualFormatada;
   }
 
   /** Método get para retornar o atributo privado quantia. */
