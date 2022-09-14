@@ -145,6 +145,23 @@ public class Banco {
     }
   }
 
+  /**
+   * Método para chamar o extrato de uma conta específica da pessoa cliente. Não
+   * possui retorno.
+   * 
+   * @param pessoaCliente // Recebe o objeto que representa a pessoa cliente
+   *                      responsável pela conta.
+   * @param conta         // Recebe um inteiro que representa o índice da conta no
+   *                      array de contas.
+   */
+  public void mostrarExtrato(PessoaCliente pessoaCliente, int conta) {
+    for (PessoaCliente pessoa : this.pessoasClientes) {
+      if (pessoa == pessoaCliente) {
+        pessoaCliente.retornarExtratoContaEspecifica(conta);
+      }
+    }
+  }
+
   /** Método get do atributo privado contas, que armazena todas as contas. */
   public ArrayList<Conta> getContas() {
     return this.contas;
