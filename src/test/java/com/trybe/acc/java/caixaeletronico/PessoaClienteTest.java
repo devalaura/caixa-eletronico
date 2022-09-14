@@ -155,8 +155,21 @@ class PessoaClienteTest {
   @Test
   @DisplayName("19 - Testa o método retornar resumo contas.")
   void retornarResumoContasTest() {
-    fail("Não implementado");
+    final Banco banco = new Banco();
+    final PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", "SenhaSegura123");
+    final Conta contaPoupanca = new Conta("Poupança", pessoaCliente, banco);
 
+    pessoaCliente.retornarResumoContas();
+    String resultadoEsperado = new StringBuilder("")
+        .append("Resumo das Contas da pessoa Laura Ramos:\n1) ")
+        .append(contaPoupanca.getIdConta())
+        .append(" : R$0.00 : Poupança\n2) ")
+        .append(contaPoupanca.getIdConta())
+        .append(" : R$0.00 : Corrente\n")
+        .toString();
+
+    assertEquals(resultadoEsperado, output.toString());
   }
 
   @Test
