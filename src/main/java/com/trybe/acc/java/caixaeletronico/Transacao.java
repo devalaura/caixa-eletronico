@@ -34,6 +34,32 @@ public class Transacao {
     return dataAtualFormatada;
   }
 
+  /**
+   * Método para retornar o resumo de cada transação efetuada nessa conta. Não
+   * recebe parametros e retorna uma String.
+   */
+  public String retornarResumoTransacao() {
+    String modificador = "";
+    if (this.getDescricao().contains("Depósito")) {
+      modificador = "+";
+    } else if (this.getDescricao().contains("recebida")) {
+      modificador = "+";
+    } else {
+      modificador = "-";
+    }
+
+    final String resumo = new StringBuilder("")
+        .append(this.getInstante())
+        .append(" -------- ")
+        .append(this.getDescricao())
+        .append("R$ ")
+        .append(this.getQuantia())
+        .append(modificador)
+        .toString();
+
+    return resumo;
+  }
+
   /** Método get para retornar o atributo privado quantia. */
   public double getQuantia() {
     return this.quantia;
