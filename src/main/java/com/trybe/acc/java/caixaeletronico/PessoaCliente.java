@@ -24,4 +24,32 @@ public class PessoaCliente {
 
     System.out.printf("Nova pessoa cliente %s com CPF: %s criada!", nome, cpf);
   }
+
+  /**
+   * Método get do atributo privado nomeCompleto, que armazena o nome da pessoa
+   * cliente.
+   */
+  public String getNomeCompleto() {
+    return this.nomeCompleto;
+  }
+
+  /** Método get do atributo privado cpf, que armazena o CPF da pessoa cliente. */
+  public String getCpf() {
+    return this.cpf;
+  }
+
+  /**
+   * Método get do atributo privado senha, que armazena a senha da pessoa cliente.
+   */
+  public String getSenha() {
+    return this.senha;
+  }
+
+  /**
+   * Método get do atributo privado contas, que armazena todas as contas da pessoa
+   * cliente.
+   */
+  public ArrayList<Conta> getContas() {
+    return this.contas;
+  }
 }
