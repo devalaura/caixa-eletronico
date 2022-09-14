@@ -7,7 +7,11 @@ public class Banco {
   private ArrayList<String> contas = new ArrayList<>();
   private ArrayList<PessoaCliente> pessoasClientes = new ArrayList<>();
 
-  /** Método para gerar um novo número, único e de 10 dígitos, para contas. */
+  /**
+   * Método para gerar um novo número, único e de 10 dígitos, para contas.
+   * Retorna a String que representa o novo número da conta.
+   * Não recebe parâmetros.
+   */
   public String gerarNumeroNovaConta() {
     Random random = new Random();
     String numeroConta = "";
@@ -27,7 +31,8 @@ public class Banco {
   }
 
   /**
-   * Método para instânciar novo objeto de pessoa cliente.
+   * Método para instânciar novo objeto de pessoa cliente. Retorna o novo objeto
+   * criado de PessoaCliente.
    * 
    * @param nome  // Recebe o nome da pessoa cliente.
    * @param cpf   // Recebe o cpf da pessoa cliente.
