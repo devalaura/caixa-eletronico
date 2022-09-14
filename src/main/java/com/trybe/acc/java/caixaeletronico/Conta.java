@@ -61,6 +61,17 @@ public class Conta {
   }
 
   /**
+   * Método para imprimir no console o resumo de transações de cada transação da
+   * lista de transações da conta. Este método não possui retorno ou recebe
+   * parametros.
+   */
+  public void retornarExtrato() {
+    for (Transacao transacao : this.transacoes) {
+      System.out.println(transacao.retornarResumoTransacao());
+    }
+  }
+
+  /**
    * Método get do atributo privado tipoConta, que armazena o tipo da conta
    * ("Poupança" ou "Corrente").
    */
