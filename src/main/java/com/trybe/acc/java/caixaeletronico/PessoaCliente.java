@@ -26,6 +26,16 @@ public class PessoaCliente {
   }
 
   /**
+   * Método para adicionar uma nova conta à lista de contas da pessoa cliente.
+   * Este método não possui retorno.
+   * 
+   * @param conta // Recebe a conta a ser inserida na lista.
+   */
+  public void adicionarConta(Conta conta) {
+    this.contas.add(conta);
+  }
+
+  /**
    * Método para filtrar a conta pelo índice e chamar o método que retorna o
    * extrato. Esse método não possui retorno.
    * 
