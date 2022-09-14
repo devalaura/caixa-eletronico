@@ -1,5 +1,12 @@
 package com.trybe.acc.java.caixaeletronico;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -66,11 +73,42 @@ class ContaTest {
 
   }
 
+  private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+  @Before
+  public void before() {
+    System.setOut(new PrintStream(output));
+  }
+
+  @After
+  public void after() throws IOException {
+    output.close();
+  }
+
   @Test
   @DisplayName("9 - Testa o método retornar extrato está imprimindo os valores corretamente.")
   void retornarExtratoTest() {
-    fail("Não implementado");
+    final Banco banco = new Banco();
+    final PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", "SenhaSegura123");
+    final Conta conta = new Conta("Poupança", pessoaCliente, banco);
 
+    conta.adicionarTransacao(200, "Depósito efetuado");
+
+    LocalDateTime dataAtual = LocalDateTime.now();
+    String dataAtualFormatada = DateTimeFormatter.ofPattern(
+        "dd/MM/yyyy HH:mm:ss").format(dataAtual);
+
+    pessoaCliente.retornarExtratoContaEspecifica(1);
+    String resultadoEsperado = new StringBuilder("")
+        .append("Extrato da conta ")
+        .append(conta.getIdConta())
+        .append("\n")
+        .append(dataAtualFormatada)
+        .append(" -------- Depósito efetuado: R$ 200.00 +")
+        .toString();
+
+    assertEquals(resultadoEsperado, output.toString());
   }
 
   @Test
