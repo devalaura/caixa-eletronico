@@ -26,6 +26,19 @@ public class PessoaCliente {
   }
 
   /**
+   * Método para filtrar a conta pelo índice e chamar o método que retorna o
+   * extrato. Esse método não possui retorno.
+   * 
+   * @param indice // Recebe um inteiro que representa o índice da conta na lista
+   *               de contas.
+   */
+  public void retornarExtratoContaEspecifica(int indice) {
+    Conta contaEspecifica = this.contas.get(indice);
+
+    contaEspecifica.retornarExtrato();
+  }
+
+  /**
    * Método get do atributo privado nomeCompleto, que armazena o nome da pessoa
    * cliente.
    */
