@@ -125,6 +125,26 @@ public class Banco {
     }
   }
 
+  /**
+   * Método para efetuar o depósito de valores em uma conta. Este método não
+   * possui
+   * retorno.
+   * 
+   * @param pessoaCliente // Recebe a pessoa cliente responsável pela conta.
+   * @param paraConta     // Recebe o índice da conta que irá ter o valor
+   *                      depositado.
+   * @param quantia       // Recebe o valor que será sacado.
+   */
+  public void depositar(PessoaCliente pessoaCliente, int paraConta, double quantia) {
+    for (PessoaCliente pessoa : this.pessoasClientes) {
+      if (pessoa == pessoaCliente) {
+        Conta conta = pessoaCliente.getContas().get(paraConta);
+
+        conta.adicionarTransacao(quantia, "Depósito efetuado");
+      }
+    }
+  }
+
   /** Método get do atributo privado contas, que armazena todas as contas. */
   public ArrayList<Conta> getContas() {
     return this.contas;
