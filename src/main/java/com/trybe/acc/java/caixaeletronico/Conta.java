@@ -50,7 +50,7 @@ public class Conta {
         saldo += transacao.getQuantia();
       } else if (transacao.getDescricao().equals("Transferência efetuada")) {
         saldo -= transacao.getQuantia();
-      } else if (transacao.getDescricao().equals("Deposito efetuado")) {
+      } else if (transacao.getDescricao().equals("Depósito efetuado")) {
         saldo += transacao.getQuantia();
       } else if (transacao.getDescricao().equals("Saque efetuado")) {
         saldo -= transacao.getQuantia();
