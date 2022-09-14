@@ -14,8 +14,8 @@ class BancoTest {
   @Test
   @DisplayName("1 - Testa o gerador de número único para nova conta.")
   void gerarNumeroNovaContaTest() {
-    Banco banco = new Banco();
-    String novaConta = banco.gerarNumeroNovaConta();
+    final Banco banco = new Banco();
+    final String novaConta = banco.gerarNumeroNovaConta();
 
     assertEquals("String", novaConta.getClass().getSimpleName());
     assertEquals(10, novaConta.length());
@@ -26,17 +26,17 @@ class BancoTest {
   @Test
   @DisplayName("2 - Testa o método adicionar pessoa cliente retorna o objeto pessoa cliente.")
   void adicionarPessoaClienteTest() {
-    Banco banco = new Banco();
+    final Banco banco = new Banco();
 
-    String nome = "Laura Ramos";
-    String cpf = "123.456.789-10";
-    String senha = "SenhaSegura123";
+    final String nome = "Laura Ramos";
+    final String cpf = "123.456.789-10";
+    final String senha = "SenhaSegura123";
 
-    PessoaCliente novaPessoaCliente = banco.adicionarPessoaCliente(nome, cpf, senha);
+    final PessoaCliente novaPessoaCliente = banco.adicionarPessoaCliente(nome, cpf, senha);
 
-    assertEquals(banco.getNomeCompleto(), nome);
-    assertEquals(banco.getCpf(), cpf);
-    assertEquals(banco.getSenha(), senha);
+    assertEquals(novaPessoaCliente.getNomeCompleto(), nome);
+    assertEquals(novaPessoaCliente.getCpf(), cpf);
+    assertEquals(novaPessoaCliente.getSenha(), senha);
     assertTrue(banco.getPessoasClientes().contains(novaPessoaCliente));
   }
 
