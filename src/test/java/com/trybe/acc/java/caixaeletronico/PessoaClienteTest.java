@@ -124,8 +124,19 @@ class PessoaClienteTest {
   @Test
   @DisplayName("17 - Testa o método adiciona transacao de uma conta específica da pessoa cliente.")
   void adicionarTransacaoContaEspecificaTest() {
-    fail("Não implementado");
+    PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", "SenhaSegura123");
 
+    Banco banco = new Banco();
+
+    Conta conta = new Conta("Poupança", pessoaCliente, banco);
+    pessoaCliente.adicionarConta(conta);
+    pessoaCliente.adicionarTransacaoContaEspecifica(2000, "Depósito efetuado");
+    pessoaCliente.adicionarTransacaoContaEspecifica(400, "Transferência recebida");
+    pessoaCliente.adicionarTransacaoContaEspecifica(400, "Transferência efetuada");
+    pessoaCliente.adicionarTransacaoContaEspecifica(200, "Saque efetuado");
+
+    assertEquals(4, conta.getTransacoes().size());
   }
 
   @Test
