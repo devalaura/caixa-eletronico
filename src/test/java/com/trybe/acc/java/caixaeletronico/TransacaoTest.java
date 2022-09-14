@@ -39,8 +39,24 @@ class TransacaoTest {
   @Test
   @DisplayName("23 - Testa o método retornar resumo transacao.")
   void retornarResumoTransacaoTest() {
-    fail("Não implementado");
+    final double quantia = 1000.00;
+    final String descricao = "Depósito efetuado";
+    final Transacao novaTransacao = new Transacao(quantia, descricao);
 
+    final LocalDateTime dataAtual = LocalDateTime.now();
+    final String dataAtualFormatada = DateTimeFormatter.ofPattern(
+        "dd/MM/yyyy HH:mm:ss").format(dataAtual);
+
+    final String resumoEsperado = new StringBuilder("")
+        .append(dataAtualFormatada)
+        .append(" -------- ")
+        .append(descricao)
+        .append("R$")
+        .append(quantia)
+        .append("+")
+        .toString();
+
+    assertEquals(resumoEsperado, novaTransacao.retornarResumoTransacao());
   }
 
   @Test
