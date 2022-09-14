@@ -1,17 +1,38 @@
 package com.trybe.acc.java.caixaeletronico;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Teste dos métodos da classe PessoaCliente")
 class PessoaClienteTest {
+  private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+  @Before
+  public void before() {
+    System.setOut(new PrintStream(output));
+  }
+
+  @After
+  public void after() throws IOException {
+    output.close();
+  }
 
   @Test
   @DisplayName("12 - Testa o construtor da classe Pessoa Cliente.")
   void construtorTest() {
-    fail("Não implementado");
+    new PessoaCliente("Laura Ramos", "12345678910", "SenhaSegura123");
 
+    String expected = "Nova pessoa cliente Laura Ramos com CPF: 123.456.789-10 criada!";
+
+    assertEquals(expected, output.toString());
   }
 
   @Test
@@ -27,7 +48,6 @@ class PessoaClienteTest {
     fail("Não implementado");
 
   }
-
 
   @Test
   @DisplayName("15 - Testa o método retornar id de uma conta específica da pessoa cliente.")
@@ -61,7 +81,6 @@ class PessoaClienteTest {
   @DisplayName("19 - Testa o método retornar resumo contas.")
   void retornarResumoContasTest() {
     fail("Não implementado");
-
 
   }
 
