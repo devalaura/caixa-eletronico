@@ -1,7 +1,7 @@
 package com.trybe.acc.java.caixaeletronico;
 
 public class PessoaCliente {
-  private String nome;
+  private String nomeCompleto;
   private String cpf;
   private String senha;
 
@@ -14,7 +14,7 @@ public class PessoaCliente {
    * 
    */
   public PessoaCliente(String nome, String cpf, String senha) {
-    this.nome = nome;
+    this.nomeCompleto = nome;
     this.cpf = cpf;
     this.senha = senha;
 
