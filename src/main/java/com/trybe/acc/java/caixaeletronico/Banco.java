@@ -83,6 +83,30 @@ public class Banco {
     }
   }
 
+  /**
+   * Método para efetuar a transferência de valores entre uma conta e outra. Este
+   * método não possui retorno.
+   * 
+   * @param pessoaCliente // Recebe a pessoa cliente responsável pelas contas.
+   * @param daConta       // Recebe o índice da conta que irá enviar os valores.
+   * @param paraConta     // Recebe o índice da conta que irá receber os valores.
+   * @param quantia       // Recebe o valor que irá ser transferido.
+   * 
+   */
+  public void transferirFundos(
+      PessoaCliente pessoaCliente, int daConta, int paraConta, double quantia) {
+
+    for (PessoaCliente pessoa : this.pessoasClientes) {
+      if (pessoa == pessoaCliente) {
+        Conta contaRemetente = pessoaCliente.getContas().get(daConta);
+        Conta contaDestinataria = pessoaCliente.getContas().get(paraConta);
+
+        contaRemetente.adicionarTransacao(quantia, "Transferência efetuada");
+        contaDestinataria.adicionarTransacao(quantia, "Transferência recebida");
+      }
+    }
+  }
+
   /** Método get do atributo privado contas, que armazena todas as contas. */
   public ArrayList<Conta> getContas() {
     return this.contas;
