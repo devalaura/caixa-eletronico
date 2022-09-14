@@ -21,13 +21,14 @@ public class Banco {
       numeroConta.concat(digito);
     }
 
-    if (this.contas.contains(numeroConta)) {
-      return this.gerarNumeroNovaConta();
-    } else {
-      this.contas.add(numeroConta);
-
-      return numeroConta;
+    for (Conta conta : this.contas) {
+      if (conta.getIdConta().equals(numeroConta)) {
+        return this.gerarNumeroNovaConta();
+      }
     }
+
+    return numeroConta;
+
   }
 
   /**
