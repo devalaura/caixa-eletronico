@@ -7,6 +7,7 @@ import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.After;
@@ -79,8 +80,17 @@ class PessoaClienteTest {
   @Test
   @DisplayName("15 - Testa o método retornar id de uma conta específica da pessoa cliente.")
   void retornarIdContaEspecificaTest() {
-    fail("Não implementado");
+    PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", "SenhaSegura123");
 
+    Banco banco = new Banco();
+
+    Conta conta = new Conta("Poupança", pessoaCliente, banco);
+    pessoaCliente.adicionarConta(conta);
+
+    assertFalse(pessoaCliente.retornarIdContaEspecifica(0).isEmpty());
+    assertEquals(10, pessoaCliente.retornarIdContaEspecifica(0).length());
+    assertEquals("String", pessoaCliente.retornarIdContaEspecifica(0).getClass().getSimpleName());
   }
 
   @Test
