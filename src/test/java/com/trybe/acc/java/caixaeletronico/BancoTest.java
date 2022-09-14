@@ -1,5 +1,11 @@
 package com.trybe.acc.java.caixaeletronico;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,18 +56,64 @@ class BancoTest {
     final String cpf = "123.456.789-10";
     final String senha = "SenhaSegura123";
 
-    PessoaCliente novaPessoaCliente = banco.adicionarPessoaCliente(nome, cpf, senha);
+    final PessoaCliente novaPessoaCliente = banco.adicionarPessoaCliente(nome, cpf, senha);
 
     assertEquals(novaPessoaCliente, banco.pessoaClienteLogin(cpf, senha));
     assertNull(banco.pessoaClienteLogin(cpf, "SenhaNãoSegura"));
     assertNull(banco.pessoaClienteLogin("000.000.000-00", senha));
   }
 
+  private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+  @Before
+  public void before() {
+    System.setOut(new PrintStream(output));
+  }
+
+  @After
+  public void after() throws IOException {
+    output.close();
+  }
+
   @Test
   @DisplayName("4 - Testa se o método transferir fundos está transferindo corretamente.")
   void depositarTestTransferirFundosTestmostrarExtratoTest() {
-    fail("Não implementado");
+    final Banco banco = new Banco();
 
+    final PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", "SenhaSegura123");
+
+    final Conta contaPoupanca = new Conta("Poupança", pessoaCliente, banco);
+    banco.adicionarConta(contaPoupanca);
+    final Conta contaCorrente = new Conta("Corrente", pessoaCliente, banco);
+    banco.adicionarConta(contaCorrente);
+
+    assertNull(banco.transferirFundos(pessoaCliente, 1, 2, 1));
+    assertNull(banco.transferirFundos(pessoaCliente, 2, 1, 1));
+
+    banco.depositar(pessoaCliente, 1, 15000);
+    banco.transferirFundos(pessoaCliente, 1, 2, 10000);
+
+    banco.mostrarSaldo(pessoaCliente, 1);
+    String esperadoPoupanca = "5000";
+    assertEquals(esperadoPoupanca, output.toString());
+
+    banco.mostrarSaldo(pessoaCliente, 2);
+    String esperadoCorrente = "10000";
+    assertEquals(esperadoCorrente, output.toString());
+
+    banco.transferirFundos(pessoaCliente, 2, 1, 5000);
+
+    banco.mostrarSaldo(pessoaCliente, 1);
+    esperadoPoupanca = "10000";
+    assertEquals(esperadoPoupanca, output.toString());
+
+    banco.mostrarSaldo(pessoaCliente, 2);
+    esperadoCorrente = "5000";
+    assertEquals(esperadoCorrente, output.toString());
+
+    assertNull(banco.transferirFundos(pessoaCliente, 1, 2, 10001));
+    assertNull(banco.transferirFundos(pessoaCliente, 2, 1, 5001));
   }
 
   @Test
