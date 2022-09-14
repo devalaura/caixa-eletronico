@@ -1,20 +1,31 @@
 package com.trybe.acc.java.caixaeletronico;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Testes dos métodos da classe Transacao")
 class TransacaoTest {
 
-
   @Test
   @DisplayName("21 - Testa o método construtor da classe Transacao.")
   void construtorTest() {
-    fail("Não implementado");
+    final double quantia = 13000;
+    final String descricao = "Depósito efetuado";
+    final Transacao novaTransacao = new Transacao(quantia, descricao);
 
+    final LocalDateTime dataAtual = LocalDateTime.now();
+    final String dataAtualFormatada = DateTimeFormatter.ofPattern(
+        "dd/MM/yyyy HH:mm:ss").format(dataAtual);
+
+    assertEquals(descricao, novaTransacao.getDescricao());
+    assertEquals(quantia, novaTransacao.getQuantia());
+    assertEquals(dataAtualFormatada, novaTransacao.getInstante());
   }
-
 
   @Test
   @DisplayName("22 - Testa o método Getter do atributo quantia.")
