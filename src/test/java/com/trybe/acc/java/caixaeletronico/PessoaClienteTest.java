@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.After;
@@ -142,8 +143,13 @@ class PessoaClienteTest {
   @Test
   @DisplayName("18 - Testa o método validar senha.")
   void validarSenhaTest() {
-    fail("Não implementado");
+    final String senhaCorreta = "SenhaSegura123";
+    final String senhaIncorreta = "SenhaNãoSegura";
+    PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", senhaCorreta);
 
+    assertTrue(pessoaCliente.validarSenha(senhaCorreta));
+    assertFalse(pessoaCliente.validarSenha(senhaIncorreta));
   }
 
   @Test
