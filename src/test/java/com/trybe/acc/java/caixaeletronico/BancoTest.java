@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName("Testes para a classe Banco")
@@ -43,8 +44,17 @@ class BancoTest {
   @Test
   @DisplayName("3 - Testa o método login da pessoa cliente retorna o objeto pessoa cliente corretamente.")
   void pessoaClienteLoginTest() {
-    fail("Não implementado");
+    final Banco banco = new Banco();
 
+    final String nome = "Laura Ramos";
+    final String cpf = "123.456.789-10";
+    final String senha = "SenhaSegura123";
+
+    PessoaCliente novaPessoaCliente = banco.adicionarPessoaCliente(nome, cpf, senha);
+
+    assertEquals(novaPessoaCliente, banco.pessoaClienteLogin(cpf, senha));
+    assertNull(banco.pessoaClienteLogin(cpf, "SenhaNãoSegura"));
+    assertNull(banco.pessoaClienteLogin("000.000.000-00", senha));
   }
 
   @Test
