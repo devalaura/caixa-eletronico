@@ -46,7 +46,13 @@ class TransacaoTest {
   @Test
   @DisplayName("24 - Testa o método instante está gerando o instante corretamente.")
   void retornarInstanteTest() {
-    fail("Não implementado");
+    final Transacao novaTransacao = new Transacao(1000, "Saque efetuado");
+
+    final LocalDateTime dataAtual = LocalDateTime.now();
+    final String dataAtualFormatada = DateTimeFormatter.ofPattern(
+        "dd/MM/yyyy HH:mm:ss").format(dataAtual);
+
+    assertEquals(dataAtualFormatada, novaTransacao.getInstante());
 
   }
 
