@@ -110,8 +110,20 @@ class BancoTest {
   @Test
   @DisplayName("5 - Testa se o método sacar está funcionando corretamente.")
   void depositarTestSacarTestMostrarExtratoTest() {
-    fail("Não implementado");
+    final Banco banco = new Banco();
 
+    final PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", "SenhaSegura123");
+
+    final Conta conta = new Conta("Poupança", pessoaCliente, banco);
+    banco.adicionarConta(conta);
+
+    banco.depositar(pessoaCliente, 1, 15000);
+
+    banco.sacar(pessoaCliente, 1, 10000);
+    banco.mostrarExtrato(pessoaCliente, 1);
+    String saldoEsperado = "5000";
+    assertEquals(saldoEsperado, output.toString());
   }
 
 }
