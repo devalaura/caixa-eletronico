@@ -26,6 +26,20 @@ public class Conta {
   }
 
   /**
+   * Método para criar nova transação e adicioná-la no Array de transações da
+   * conta. Este método não possui retorno.
+   * 
+   * @param quantia   // Recebe um valor double que será a quantia da transação.
+   * @param descricao // Recebe a descrição, em formato de String, da transação.
+   * 
+   */
+  public void adicionarTransacao(double quantia, String descricao) {
+    Transacao novaTransacao = new Transacao(quantia, descricao);
+
+    this.transacoes.add(novaTransacao);
+  }
+
+  /**
    * Método get do atributo privado tipoConta, que armazena o tipo da conta
    * ("Poupança" ou "Corrente").
    */
