@@ -26,8 +26,18 @@ class BancoTest {
   @Test
   @DisplayName("2 - Testa o método adicionar pessoa cliente retorna o objeto pessoa cliente.")
   void adicionarPessoaClienteTest() {
-    fail("Não implementado");
+    Banco banco = new Banco();
 
+    String nome = "Laura Ramos";
+    String cpf = "123.456.789-10";
+    String senha = "SenhaSegura123";
+
+    PessoaCliente novaPessoaCliente = banco.adicionarPessoaCliente(nome, cpf, senha);
+
+    assertEquals(banco.getNomeCompleto(), nome);
+    assertEquals(banco.getCpf(), cpf);
+    assertEquals(banco.getSenha(), senha);
+    assertTrue(banco.getPessoasClientes().contains(novaPessoaCliente));
   }
 
   @Test
