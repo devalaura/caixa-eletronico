@@ -61,6 +61,22 @@ public class Conta {
   }
 
   /**
+   * Método para retornar o resumo da conta: o identificador único, o saldo e o
+   * tipo da conta. Este método não recebe parametros e retorna uma String.
+   */
+  public String retornarResumoConta() {
+    String resumo = new StringBuilder("")
+        .append(this.getIdConta())
+        .append(" : R$")
+        .append(this.retornarSaldo())
+        .append(" : ")
+        .append(this.getTipoConta())
+        .toString();
+
+    return resumo;
+  }
+
+  /**
    * Método para imprimir no console o resumo de transações de cada transação da
    * lista de transações da conta. Este método não possui retorno ou recebe
    * parametros.
