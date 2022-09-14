@@ -66,13 +66,6 @@ class ContaTest {
 
   }
 
-  @Test
-  @DisplayName("8 - Testa o método retornar resumo está retornando uma string com os valores corretamente.")
-  void retornarResumoContaTest() {
-    fail("Não implementado");
-
-  }
-
   private final ByteArrayOutputStream output = new ByteArrayOutputStream();
 
   @Before
@@ -86,8 +79,8 @@ class ContaTest {
   }
 
   @Test
-  @DisplayName("9 - Testa o método retornar extrato está imprimindo os valores corretamente.")
-  void retornarExtratoTest() {
+  @DisplayName("8 - Testa o método retornar resumo está retornando uma string com os valores corretamente.")
+  void retornarResumoContaTest() {
     final Banco banco = new Banco();
     final PessoaCliente pessoaCliente = new PessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
@@ -104,6 +97,29 @@ class ContaTest {
         .append("Extrato da conta ")
         .append(conta.getIdConta())
         .append("\n")
+        .append(dataAtualFormatada)
+        .append(" -------- Depósito efetuado: R$ 200.00 +")
+        .toString();
+
+    assertEquals(resultadoEsperado, output.toString());
+  }
+
+  @Test
+  @DisplayName("9 - Testa o método retornar extrato está imprimindo os valores corretamente.")
+  void retornarExtratoTest() {
+    final Banco banco = new Banco();
+    final PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", "SenhaSegura123");
+    final Conta conta = new Conta("Poupança", pessoaCliente, banco);
+
+    conta.adicionarTransacao(200.00, "Depósito efetuado");
+
+    LocalDateTime dataAtual = LocalDateTime.now();
+    String dataAtualFormatada = DateTimeFormatter.ofPattern(
+        "dd/MM/yyyy HH:mm:ss").format(dataAtual);
+
+    conta.retornarExtrato();
+    String resultadoEsperado = new StringBuilder("")
         .append(dataAtualFormatada)
         .append(" -------- Depósito efetuado: R$ 200.00 +")
         .toString();
