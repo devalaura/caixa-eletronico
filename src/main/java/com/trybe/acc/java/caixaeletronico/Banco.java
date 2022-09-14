@@ -47,6 +47,24 @@ public class Banco {
 
   }
 
+  /**
+   * Método para verificar a validade dos dados de login (cpf e senha) da pessoa
+   * cliente. Caso os dados estejam corretos, retorna a pessoa cliente encontrada,
+   * caso não, retorna null.
+   * 
+   * @param cpf   // Recebe o CPF da pessoa cliente que está tentando logar.
+   * @param senha // Recebe a senha da pessoa cliente que está tentando logar.
+   */
+  public PessoaCliente pessoaClienteLogin(String cpf, String senha) {
+    for (PessoaCliente pessoa : this.pessoasClientes) {
+      if (pessoa.getCpf().equals(cpf) && pessoa.getSenha().equals(senha)) {
+        return pessoa;
+      }
+    }
+
+    return null;
+  }
+
   /** Método get do atributo privado contas, que armazena todas as contas. */
   public ArrayList<String> getContas() {
     return this.contas;
