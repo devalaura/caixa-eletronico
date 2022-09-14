@@ -1,5 +1,8 @@
 package com.trybe.acc.java.caixaeletronico;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -59,7 +62,28 @@ class PessoaClienteTest {
   @Test
   @DisplayName("16 - Testa o método retornar o extrato de uma conta específica da pessoa cliente.")
   void retornarExtratoContaEspecificaTest() {
-    fail("Não implementado");
+    Banco banco = new Banco();
+    PessoaCliente pessoaCliente = new PessoaCliente(
+        "Laura Ramos", "123.456.789-10", "SenhaSegura123");
+
+    Conta conta = new Conta("Corrente", pessoaCliente, banco);
+    pessoaCliente.adicionarConta(conta);
+    conta.adicionarTransacao(200, "Depósito efetuado");
+
+    LocalDateTime dataAtual = LocalDateTime.now();
+    String dataAtualFormatada = DateTimeFormatter.ofPattern(
+        "dd/MM/yyyy HH:mm:ss").format(dataAtual);
+
+    pessoaCliente.retornarExtratoContaEspecifica(1);
+    String resultadoEsperado = new StringBuilder("")
+        .append("Extrato da conta ")
+        .append(conta.getIdConta())
+        .append("\n")
+        .append(dataAtualFormatada)
+        .append(" -------- Depósito efetuado: R$ 200.00 +")
+        .toString();
+
+    assertEquals(resultadoEsperado, output.toString());
 
   }
 
