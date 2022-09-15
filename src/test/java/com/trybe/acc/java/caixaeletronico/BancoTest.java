@@ -1,7 +1,6 @@
 package com.trybe.acc.java.caixaeletronico;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.DisplayName;
@@ -60,47 +59,47 @@ class BancoTest {
   @Test
   @DisplayName("4 - Testa se o método transferir fundos está transferindo corretamente.")
   void depositarTestTransferirFundosTestmostrarExtratoTest() {
+    ByteArrayOutputStream saida = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(saida);
+    System.setOut(ps);
+
     final Banco banco = new Banco();
-
-    final PessoaCliente pessoaCliente = new PessoaCliente(
+    final PessoaCliente pessoaCliente = banco.adicionarPessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
-
     final Conta contaPoupanca = new Conta("Poupança", pessoaCliente, banco);
-    banco.adicionarConta(contaPoupanca);
     final Conta contaCorrente = new Conta("Corrente", pessoaCliente, banco);
+    banco.adicionarConta(contaPoupanca);
     banco.adicionarConta(contaCorrente);
 
     banco.depositar(pessoaCliente, 0, 15000);
+    banco.mostrarExtrato(pessoaCliente, 0);
+    String esperadoPoupanca = " -------- Depósito efetuado : R$ 15000.0 +";
+    assertTrue(saida.toString().contains(esperadoPoupanca));
+    assertEquals(1, contaPoupanca.getTransacoes().size());
 
     banco.transferirFundos(pessoaCliente, 0, 1, 10000);
-
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
-    PrintStream ps = System.out;
-    System.setOut(new PrintStream(output));
+    assertEquals(2, contaPoupanca.getTransacoes().size());
+    assertEquals(1, contaCorrente.getTransacoes().size());
 
     banco.mostrarExtrato(pessoaCliente, 0);
-    String esperadoPoupanca = "5000";
-    assertEquals(esperadoPoupanca, output.toString());
-
-    System.setOut(new PrintStream(output));
+    esperadoPoupanca = " -------- Transferência efetuada : R$ 5000.0 +";
+    assertTrue(saida.toString().contains(esperadoPoupanca));
 
     banco.mostrarExtrato(pessoaCliente, 1);
-    String esperadoCorrente = "10000";
-    assertEquals(esperadoCorrente, output.toString());
+    String esperadoCorrente = " -------- Transferência recebida : R$ 10000.0 +";
+    assertTrue(saida.toString().contains(esperadoCorrente));
 
     banco.transferirFundos(pessoaCliente, 1, 0, 5000);
-
-    System.setOut(new PrintStream(output));
+    assertEquals(3, contaPoupanca.getTransacoes().size());
+    assertEquals(2, contaCorrente.getTransacoes().size());
 
     banco.mostrarExtrato(pessoaCliente, 0);
-    esperadoPoupanca = "10000";
-    assertEquals(esperadoPoupanca, output.toString());
-
-    System.setOut(new PrintStream(output));
+    esperadoPoupanca = " -------- Transferência recebida : R$ 5000.0 +";
+    assertEquals(saida.toString().contains(esperadoPoupanca));
 
     banco.mostrarExtrato(pessoaCliente, 1);
-    esperadoCorrente = "5000";
-    assertEquals(esperadoCorrente, output.toString());
+    esperadoCorrente = "-------- Transferência efetuada : R$ 5000.0 +";
+    assertEquals(saida.toString().contains(esperadoCorrente));
   }
 
   @Test
