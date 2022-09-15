@@ -82,25 +82,25 @@ class BancoTest {
     String esperadoPoupanca = "5000";
     assertEquals(esperadoPoupanca, output.toString());
 
-    // System.setOut(new PrintStream(output));
+    System.setOut(new PrintStream(output));
 
-    // banco.mostrarExtrato(pessoaCliente, 1);
-    // String esperadoCorrente = "10000";
-    // assertEquals(esperadoCorrente, output.toString());
+    banco.mostrarExtrato(pessoaCliente, 1);
+    String esperadoCorrente = "10000";
+    assertEquals(esperadoCorrente, output.toString());
 
-    // banco.transferirFundos(pessoaCliente, 1, 0, 5000);
+    banco.transferirFundos(pessoaCliente, 1, 0, 5000);
 
-    // System.setOut(new PrintStream(output));
+    System.setOut(new PrintStream(output));
 
-    // banco.mostrarExtrato(pessoaCliente, 0);
-    // esperadoPoupanca = "10000";
-    // assertEquals(esperadoPoupanca, output.toString());
+    banco.mostrarExtrato(pessoaCliente, 0);
+    esperadoPoupanca = "10000";
+    assertEquals(esperadoPoupanca, output.toString());
 
-    // System.setOut(new PrintStream(output));
+    System.setOut(new PrintStream(output));
 
-    // banco.mostrarExtrato(pessoaCliente, 1);
-    // esperadoCorrente = "5000";
-    // assertEquals(esperadoCorrente, output.toString());
+    banco.mostrarExtrato(pessoaCliente, 1);
+    esperadoCorrente = "5000";
+    assertEquals(esperadoCorrente, output.toString());
   }
 
   @Test

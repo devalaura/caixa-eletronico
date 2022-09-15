@@ -16,8 +16,8 @@ public class Banco {
     Random random = new Random();
     StringBuilder numeroConta = new StringBuilder("");
 
-    for (int i = 0; i <= 10; i++) {
-      String digito = Integer.toString(random.nextInt());
+    for (int i = 1; i <= 10; i++) {
+      String digito = Integer.toString(random.nextInt(9));
       numeroConta.append(digito);
     }
 
@@ -63,6 +63,8 @@ public class Banco {
    */
   public PessoaCliente pessoaClienteLogin(String cpf, String senha) {
     for (PessoaCliente pessoa : this.pessoasClientes) {
+      System.out.println(pessoa.validarSenha(senha) + " para a senha enviada.");
+      System.out.println(pessoa.getCpf().equals(cpf) + " para o cpf enviado.");
       if (pessoa.validarSenha(senha) && pessoa.getCpf().equals(cpf)) {
         return pessoa;
       }
@@ -78,9 +80,8 @@ public class Banco {
    * @param conta // Recebe a conta que deve ser adicionada à lista.
    */
   public void adicionarConta(Conta conta) {
-    if (!this.contas.contains(conta)) {
-      this.contas.add(conta);
-    }
+    this.contas.add(conta);
+    conta.getPessoaCliente().adicionarConta(conta);
   }
 
   /**
