@@ -68,21 +68,13 @@ class ContaTest {
 
   }
 
-  private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-  @Before
-  public void before() {
-    System.setOut(new PrintStream(output));
-  }
-
-  @After
-  public void after() throws IOException {
-    output.close();
-  }
-
   @Test
   @DisplayName("8 - Testa o método retornar resumo está retornando uma string com os valores corretamente.")
   void retornarResumoContaTest() {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     final Banco banco = new Banco();
     final PessoaCliente pessoaCliente = new PessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
@@ -109,6 +101,10 @@ class ContaTest {
   @Test
   @DisplayName("9 - Testa o método retornar extrato está imprimindo os valores corretamente.")
   void retornarExtratoTest() {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     final Banco banco = new Banco();
     final PessoaCliente pessoaCliente = new PessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");

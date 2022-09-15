@@ -4,8 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -61,21 +59,13 @@ class BancoTest {
     assertNull(banco.pessoaClienteLogin("000.000.000-00", senha));
   }
 
-  private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-  @Before
-  public void before() {
-    System.setOut(new PrintStream(output));
-  }
-
-  @After
-  public void after() throws IOException {
-    output.close();
-  }
-
   @Test
   @DisplayName("4 - Testa se o método transferir fundos está transferindo corretamente.")
   void depositarTestTransferirFundosTestmostrarExtratoTest() {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     final Banco banco = new Banco();
 
     final PessoaCliente pessoaCliente = new PessoaCliente(
@@ -108,6 +98,10 @@ class BancoTest {
   @Test
   @DisplayName("5 - Testa se o método sacar está funcionando corretamente.")
   void depositarTestSacarTestMostrarExtratoTest() {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     final Banco banco = new Banco();
 
     final PessoaCliente pessoaCliente = new PessoaCliente(
@@ -119,7 +113,7 @@ class BancoTest {
     banco.depositar(pessoaCliente, 0, 15000);
     banco.sacar(pessoaCliente, 0, 10000);
     banco.mostrarExtrato(pessoaCliente, 0);
-    
+
     String saldoEsperado = "5000";
     assertEquals(saldoEsperado, output.toString());
   }

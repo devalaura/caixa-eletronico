@@ -18,21 +18,13 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Teste dos métodos da classe PessoaCliente")
 class PessoaClienteTest {
-  private final ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-  @Before
-  public void before() {
-    System.setOut(new PrintStream(output));
-  }
-
-  @After
-  public void after() throws IOException {
-    output.close();
-  }
-
   @Test
   @DisplayName("12 - Testa o construtor da classe Pessoa Cliente.")
   void construtorTest() {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     new PessoaCliente("Laura Ramos", "123.456.789-10", "SenhaSegura123");
 
     String expected = "Nova pessoa cliente Laura Ramos com CPF: 123.456.789-10 criada!";
@@ -96,6 +88,10 @@ class PessoaClienteTest {
   @Test
   @DisplayName("16 - Testa o método retornar o extrato de uma conta específica da pessoa cliente.")
   void retornarExtratoContaEspecificaTest() {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     Banco banco = new Banco();
     PessoaCliente pessoaCliente = new PessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
@@ -154,6 +150,10 @@ class PessoaClienteTest {
   @Test
   @DisplayName("19 - Testa o método retornar resumo contas.")
   void retornarResumoContasTest() {
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     final Banco banco = new Banco();
     final PessoaCliente pessoaCliente = new PessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
