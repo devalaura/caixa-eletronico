@@ -14,20 +14,20 @@ public class Banco {
    */
   public String gerarNumeroNovaConta() {
     Random random = new Random();
-    String numeroConta = "";
+    StringBuilder numeroConta = new StringBuilder("");
 
     for (int i = 0; i < 10; i++) {
       String digito = Integer.toString(random.nextInt());
-      numeroConta += digito;
+      numeroConta.append(digito);
     }
 
     for (Conta conta : this.contas) {
-      if (conta.getIdConta().equals(numeroConta)) {
+      if (conta.getIdConta().equals(numeroConta.toString())) {
         return this.gerarNumeroNovaConta();
       }
     }
 
-    return numeroConta;
+    return numeroConta.toString();
 
   }
 
