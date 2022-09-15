@@ -77,6 +77,18 @@ public class PessoaCliente {
   }
 
   /**
+   * Método para adicionar uma transação à uma conta específica dentro da
+   * lista de contas. Esse método não possui retorno.
+   * 
+   * @param indice    // Recebe o índice da conta dentro da lista de contas.
+   * @param quantia   // Recebe o valor da transação em questão.
+   * @param descricao // Recebe a descrição da transação em questão.
+   */
+  public void adicionarTransacaoContaEspecifica(int indice, double quantia, String descricao) {
+    this.contas.get(indice).adicionarTransacao(quantia, descricao);
+  }
+
+  /**
    * Método get do atributo privado nomeCompleto, que armazena o nome da pessoa
    * cliente.
    */
