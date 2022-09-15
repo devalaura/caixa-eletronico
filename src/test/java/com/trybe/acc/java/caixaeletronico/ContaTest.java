@@ -1,18 +1,16 @@
 package com.trybe.acc.java.caixaeletronico;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Teste da classe Conta")
@@ -32,7 +30,6 @@ class ContaTest {
 
     assertEquals(novaPessoaCliente, novaConta.getPessoaCliente());
     assertEquals(tipoConta, novaConta.getTipoConta());
-    assertEquals("String", novaConta.getIdConta().getClass().getSimpleName());
     assertEquals(10, novaConta.getIdConta().length());
   }
 
@@ -71,46 +68,34 @@ class ContaTest {
   @Test
   @DisplayName("8 - Testa o método retornar resumo está retornando uma string com os valores corretamente.")
   void retornarResumoContaTest() {
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
-    PrintStream ps = System.out;
-    System.setOut(new PrintStream(output));
-
     final Banco banco = new Banco();
-    final PessoaCliente pessoaCliente = new PessoaCliente(
+    final PessoaCliente pessoaCliente = banco.adicionarPessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
     final Conta conta = new Conta("Poupança", pessoaCliente, banco);
 
-    conta.adicionarTransacao(200.00, "Depósito efetuado");
+    conta.adicionarTransacao(200, "Depósito efetuado");
 
-    LocalDateTime dataAtual = LocalDateTime.now();
-    String dataAtualFormatada = DateTimeFormatter.ofPattern(
-        "dd/MM/yyyy HH:mm:ss").format(dataAtual);
-
-    conta.retornarExtrato();
     String resultadoEsperado = new StringBuilder("")
-        .append("Extrato da conta ")
         .append(conta.getIdConta())
-        .append("\n")
-        .append(dataAtualFormatada)
-        .append(" -------- Depósito efetuado: R$ 200.00 +")
+        .append(" : R$200.0 : Poupança")
         .toString();
 
-    assertEquals(resultadoEsperado, output.toString());
+    assertEquals(resultadoEsperado, conta.retornarResumoConta());
   }
 
   @Test
   @DisplayName("9 - Testa o método retornar extrato está imprimindo os valores corretamente.")
   void retornarExtratoTest() {
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
-    PrintStream ps = System.out;
-    System.setOut(new PrintStream(output));
+    ByteArrayOutputStream saida = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(saida);
+    System.setOut(ps);
 
     final Banco banco = new Banco();
-    final PessoaCliente pessoaCliente = new PessoaCliente(
+    final PessoaCliente pessoaCliente = banco.adicionarPessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
     final Conta conta = new Conta("Poupança", pessoaCliente, banco);
 
-    conta.adicionarTransacao(200.00, "Depósito efetuado");
+    conta.adicionarTransacao(200, "Depósito efetuado");
 
     LocalDateTime dataAtual = LocalDateTime.now();
     String dataAtualFormatada = DateTimeFormatter.ofPattern(
@@ -119,10 +104,10 @@ class ContaTest {
     conta.retornarExtrato();
     String resultadoEsperado = new StringBuilder("")
         .append(dataAtualFormatada)
-        .append(" -------- Depósito efetuado: R$ 200.00 +")
+        .append(" -------- Depósito efetuado R$ 200.0 +")
         .toString();
 
-    assertEquals(resultadoEsperado, output.toString());
+    assertTrue(saida.toString().contains(resultadoEsperado));
   }
 
   @Test
