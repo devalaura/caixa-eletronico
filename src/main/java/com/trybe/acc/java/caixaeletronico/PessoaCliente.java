@@ -54,6 +54,16 @@ public class PessoaCliente {
   }
 
   /**
+   * Método para retornar o número identificador de uma conta específica dentro da
+   * lista de contas. Seu retorno é do tipo String.
+   * 
+   * @param indice // Recebe o índice da conta dentro da lista de contas.
+   */
+  public String retornarIdContaEspecifica(int indice) {
+    return this.contas.get(indice).getIdConta();
+  }
+
+  /**
    * Método para filtrar a conta pelo índice e chamar o método que retorna o
    * extrato. Esse método não possui retorno.
    * 
