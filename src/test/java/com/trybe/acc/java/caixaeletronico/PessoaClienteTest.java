@@ -109,7 +109,7 @@ class PessoaClienteTest {
     String dataAtualFormatada = DateTimeFormatter.ofPattern(
         "dd/MM/yyyy HH:mm:ss").format(dataAtual);
 
-    pessoaCliente.retornarExtratoContaEspecifica(1);
+    pessoaCliente.retornarExtratoContaEspecifica(0);
     String resultadoEsperado = new StringBuilder("")
         .append("Extrato da conta ")
         .append(conta.getIdConta())

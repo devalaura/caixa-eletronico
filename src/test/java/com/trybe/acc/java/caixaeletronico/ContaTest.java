@@ -48,7 +48,7 @@ class ContaTest {
     assertEquals(0, conta.retornarSaldo());
     assertEquals(0, conta.getTransacoes().size());
 
-    conta.adicionarTransacao(200, "Depósito recebido");
+    conta.adicionarTransacao(200, "Depósito efetuado");
     assertEquals(200, conta.retornarSaldo());
     assertEquals(1, conta.getTransacoes().size());
 
@@ -86,7 +86,7 @@ class ContaTest {
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
     final Conta conta = new Conta("Poupança", pessoaCliente, banco);
 
-    conta.adicionarTransacao(200, "Depósito efetuado");
+    conta.adicionarTransacao(200.00, "Depósito efetuado");
 
     LocalDateTime dataAtual = LocalDateTime.now();
     String dataAtualFormatada = DateTimeFormatter.ofPattern(

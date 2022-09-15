@@ -26,7 +26,6 @@ class BancoTest {
     assertEquals("String", novaConta.getClass().getSimpleName());
     assertEquals(10, novaConta.length());
     assertFalse(novaConta.matches("^[a-zA-Z]"));
-    assertTrue(banco.getContas().contains(novaConta));
   }
 
   @Test
@@ -40,9 +39,9 @@ class BancoTest {
 
     final PessoaCliente novaPessoaCliente = banco.adicionarPessoaCliente(nome, cpf, senha);
 
-    assertEquals(novaPessoaCliente.getNomeCompleto(), nome);
-    assertEquals(novaPessoaCliente.getCpf(), cpf);
-    assertEquals(novaPessoaCliente.getSenha(), senha);
+    assertEquals(nome, novaPessoaCliente.getNomeCompleto());
+    assertEquals(cpf, novaPessoaCliente.getCpf());
+    assertEquals(senha, novaPessoaCliente.getSenha());
     assertTrue(banco.getPessoasClientes().contains(novaPessoaCliente));
   }
 
@@ -87,21 +86,21 @@ class BancoTest {
     final Conta contaCorrente = new Conta("Corrente", pessoaCliente, banco);
     banco.adicionarConta(contaCorrente);
 
-    banco.depositar(pessoaCliente, 1, 15000);
+    banco.depositar(pessoaCliente, 0, 15000);
 
-    banco.transferirFundos(pessoaCliente, 1, 2, 10000);
-    banco.mostrarExtrato(pessoaCliente, 1);
+    banco.transferirFundos(pessoaCliente, 0, 1, 10000);
+    banco.mostrarExtrato(pessoaCliente, 0);
     String esperadoPoupanca = "5000";
     assertEquals(esperadoPoupanca, output.toString());
-    banco.mostrarExtrato(pessoaCliente, 2);
+    banco.mostrarExtrato(pessoaCliente, 1);
     String esperadoCorrente = "10000";
     assertEquals(esperadoCorrente, output.toString());
 
-    banco.transferirFundos(pessoaCliente, 2, 1, 5000);
-    banco.mostrarExtrato(pessoaCliente, 1);
+    banco.transferirFundos(pessoaCliente, 1, 0, 5000);
+    banco.mostrarExtrato(pessoaCliente, 0);
     esperadoPoupanca = "10000";
     assertEquals(esperadoPoupanca, output.toString());
-    banco.mostrarExtrato(pessoaCliente, 2);
+    banco.mostrarExtrato(pessoaCliente, 1);
     esperadoCorrente = "5000";
     assertEquals(esperadoCorrente, output.toString());
   }
@@ -117,10 +116,10 @@ class BancoTest {
     final Conta conta = new Conta("Poupança", pessoaCliente, banco);
     banco.adicionarConta(conta);
 
-    banco.depositar(pessoaCliente, 1, 15000);
-
-    banco.sacar(pessoaCliente, 1, 10000);
-    banco.mostrarExtrato(pessoaCliente, 1);
+    banco.depositar(pessoaCliente, 0, 15000);
+    banco.sacar(pessoaCliente, 0, 10000);
+    banco.mostrarExtrato(pessoaCliente, 0);
+    
     String saldoEsperado = "5000";
     assertEquals(saldoEsperado, output.toString());
   }
