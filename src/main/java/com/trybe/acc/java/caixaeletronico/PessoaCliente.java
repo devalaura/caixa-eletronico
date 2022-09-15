@@ -110,7 +110,7 @@ public class PessoaCliente {
   public void retornarResumoContas() {
     int contador = 1;
     for (Conta conta : this.contas) {
-      System.out.printf("%s) %s", contador, conta.retornarResumoConta());
+      System.out.printf("%s) %s%n", contador, conta.retornarResumoConta());
       contador++;
     }
   }

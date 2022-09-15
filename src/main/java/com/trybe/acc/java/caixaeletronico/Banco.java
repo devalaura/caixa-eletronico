@@ -63,7 +63,7 @@ public class Banco {
    */
   public PessoaCliente pessoaClienteLogin(String cpf, String senha) {
     for (PessoaCliente pessoa : this.pessoasClientes) {
-      if (pessoa.getCpf().equals(cpf) && pessoa.getSenha().equals(senha)) {
+      if (pessoa.validarSenha(senha) && pessoa.getCpf().equals(cpf)) {
         return pessoa;
       }
     }
