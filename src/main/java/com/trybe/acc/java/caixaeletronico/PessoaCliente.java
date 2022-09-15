@@ -44,6 +44,16 @@ public class PessoaCliente {
   }
 
   /**
+   * Método para retornar o saldo de uma conta específica dentro da lista de
+   * contas. Seu retorno é do tipo double.
+   * 
+   * @param indice // Recebe o índice da conta dentro da lista de contas.
+   */
+  public double retornarSaldoContaEspecifica(int indice) {
+    return this.contas.get(indice).retornarSaldo();
+  }
+
+  /**
    * Método para filtrar a conta pelo índice e chamar o método que retorna o
    * extrato. Esse método não possui retorno.
    * 
