@@ -16,7 +16,7 @@ public class Banco {
     Random random = new Random();
     StringBuilder numeroConta = new StringBuilder("");
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i <= 10; i++) {
       String digito = Integer.toString(random.nextInt());
       numeroConta.append(digito);
     }

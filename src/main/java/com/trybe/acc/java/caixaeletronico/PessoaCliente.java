@@ -22,7 +22,7 @@ public class PessoaCliente {
     this.senha = senha;
     this.contas = new ArrayList<>();
 
-    System.out.printf("Nova pessoa cliente %s com CPF: %s criada!", nome, cpf);
+    System.out.println("Nova pessoa cliente " + nome + " com CPF: " + cpf + " criada!");
   }
 
   /**
@@ -109,9 +109,9 @@ public class PessoaCliente {
    */
   public void retornarResumoContas() {
     int contador = 1;
-    System.out.printf("Resumo das Contas da pessoa %s:%n", this.getNomeCompleto());
+    System.out.println("Resumo das Contas da pessoa " + this.getNomeCompleto() + " :");
     for (Conta conta : this.contas) {
-      System.out.printf("%s) %s%n", contador, conta.retornarResumoConta());
+      System.out.println(contador + ") " + conta.retornarResumoConta());
       contador++;
     }
   }
