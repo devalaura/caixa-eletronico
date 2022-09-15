@@ -82,7 +82,7 @@ class BancoTest {
     assertEquals(1, contaCorrente.getTransacoes().size());
 
     banco.mostrarExtrato(pessoaCliente, 0);
-    esperadoPoupanca = " -------- Transferência efetuada : R$ 5000.0 +";
+    esperadoPoupanca = " -------- Transferência efetuada : R$ 5000.0 -";
     assertTrue(saida.toString().contains(esperadoPoupanca));
 
     banco.mostrarExtrato(pessoaCliente, 1);
@@ -95,35 +95,35 @@ class BancoTest {
 
     banco.mostrarExtrato(pessoaCliente, 0);
     esperadoPoupanca = " -------- Transferência recebida : R$ 5000.0 +";
-    assertEquals(saida.toString().contains(esperadoPoupanca));
+    assertTrue(saida.toString().contains(esperadoPoupanca));
 
     banco.mostrarExtrato(pessoaCliente, 1);
-    esperadoCorrente = "-------- Transferência efetuada : R$ 5000.0 +";
-    assertEquals(saida.toString().contains(esperadoCorrente));
+    esperadoCorrente = "-------- Transferência efetuada : R$ 5000.0 -";
+    assertTrue(saida.toString().contains(esperadoCorrente));
   }
 
   @Test
   @DisplayName("5 - Testa se o método sacar está funcionando corretamente.")
   void depositarTestSacarTestMostrarExtratoTest() {
+    ByteArrayOutputStream saida = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(saida);
+    System.setOut(ps);
+
     final Banco banco = new Banco();
-
-    final PessoaCliente pessoaCliente = new PessoaCliente(
+    final PessoaCliente pessoaCliente = banco.adicionarPessoaCliente(
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
-
     final Conta conta = new Conta("Poupança", pessoaCliente, banco);
     banco.adicionarConta(conta);
 
     banco.depositar(pessoaCliente, 0, 15000);
     banco.sacar(pessoaCliente, 0, 10000);
 
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
-    PrintStream ps = System.out;
-    System.setOut(new PrintStream(output));
-
     banco.mostrarExtrato(pessoaCliente, 0);
 
-    String saldoEsperado = "5000";
-    assertEquals(saldoEsperado, output.toString());
+    String esperado = " -------- Depósito efetuado : R$ 15000.0 +";
+    assertTrue(saida.toString().contains(esperado));
+    esperado = " -------- Saque efetuado : R$ 10000.0 -";
+    assertTrue(saida.toString().contains(esperado));
   }
 
 }
