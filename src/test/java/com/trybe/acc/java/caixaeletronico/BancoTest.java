@@ -68,12 +68,14 @@ class BancoTest {
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
     final Conta contaPoupanca = new Conta("Poupança", pessoaCliente, banco);
     final Conta contaCorrente = new Conta("Corrente", pessoaCliente, banco);
+    pessoaCliente.adicionarConta(contaPoupanca);
+    pessoaCliente.adicionarConta(contaCorrente);
     banco.adicionarConta(contaPoupanca);
     banco.adicionarConta(contaCorrente);
 
     banco.depositar(pessoaCliente, 0, 15000);
     banco.mostrarExtrato(pessoaCliente, 0);
-    String esperadoPoupanca = " -------- Depósito efetuado : R$ 15000.0 +";
+    String esperadoPoupanca = " -------- Depósito efetuado R$ 15000.0 +";
     assertTrue(saida.toString().contains(esperadoPoupanca));
     assertEquals(1, contaPoupanca.getTransacoes().size());
 
@@ -82,11 +84,11 @@ class BancoTest {
     assertEquals(1, contaCorrente.getTransacoes().size());
 
     banco.mostrarExtrato(pessoaCliente, 0);
-    esperadoPoupanca = " -------- Transferência efetuada : R$ 5000.0 -";
+    esperadoPoupanca = " -------- Transferência efetuada R$ 10000.0 -";
     assertTrue(saida.toString().contains(esperadoPoupanca));
 
     banco.mostrarExtrato(pessoaCliente, 1);
-    String esperadoCorrente = " -------- Transferência recebida : R$ 10000.0 +";
+    String esperadoCorrente = " -------- Transferência recebida R$ 10000.0 +";
     assertTrue(saida.toString().contains(esperadoCorrente));
 
     banco.transferirFundos(pessoaCliente, 1, 0, 5000);
@@ -94,11 +96,11 @@ class BancoTest {
     assertEquals(2, contaCorrente.getTransacoes().size());
 
     banco.mostrarExtrato(pessoaCliente, 0);
-    esperadoPoupanca = " -------- Transferência recebida : R$ 5000.0 +";
+    esperadoPoupanca = " -------- Transferência recebida R$ 5000.0 +";
     assertTrue(saida.toString().contains(esperadoPoupanca));
 
     banco.mostrarExtrato(pessoaCliente, 1);
-    esperadoCorrente = "-------- Transferência efetuada : R$ 5000.0 -";
+    esperadoCorrente = "-------- Transferência efetuada R$ 5000.0 -";
     assertTrue(saida.toString().contains(esperadoCorrente));
   }
 
@@ -120,9 +122,9 @@ class BancoTest {
 
     banco.mostrarExtrato(pessoaCliente, 0);
 
-    String esperado = " -------- Depósito efetuado : R$ 15000.0 +";
+    String esperado = " -------- Depósito efetuado R$ 15000.0 +";
     assertTrue(saida.toString().contains(esperado));
-    esperado = " -------- Saque efetuado : R$ 10000.0 -";
+    esperado = " -------- Saque efetuado R$ 10000.0 -";
     assertTrue(saida.toString().contains(esperado));
   }
 
