@@ -132,10 +132,10 @@ class PessoaClienteTest {
 
     Conta conta = new Conta("Poupança", pessoaCliente, banco);
     pessoaCliente.adicionarConta(conta);
-    pessoaCliente.adicionarTransacaoContaEspecifica(2000, "Depósito efetuado");
-    pessoaCliente.adicionarTransacaoContaEspecifica(400, "Transferência recebida");
-    pessoaCliente.adicionarTransacaoContaEspecifica(400, "Transferência efetuada");
-    pessoaCliente.adicionarTransacaoContaEspecifica(200, "Saque efetuado");
+    pessoaCliente.adicionarTransacaoContaEspecifica(0, 2000, "Depósito efetuado");
+    pessoaCliente.adicionarTransacaoContaEspecifica(0, 400, "Transferência recebida");
+    pessoaCliente.adicionarTransacaoContaEspecifica(0, 400, "Transferência efetuada");
+    pessoaCliente.adicionarTransacaoContaEspecifica(0, 200, "Saque efetuado");
 
     assertEquals(4, conta.getTransacoes().size());
   }
