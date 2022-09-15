@@ -62,10 +62,6 @@ class BancoTest {
   @Test
   @DisplayName("4 - Testa se o método transferir fundos está transferindo corretamente.")
   void depositarTestTransferirFundosTestmostrarExtratoTest() {
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
-    PrintStream ps = System.out;
-    System.setOut(new PrintStream(output));
-
     final Banco banco = new Banco();
 
     final PessoaCliente pessoaCliente = new PessoaCliente(
@@ -79,17 +75,31 @@ class BancoTest {
     banco.depositar(pessoaCliente, 0, 15000);
 
     banco.transferirFundos(pessoaCliente, 0, 1, 10000);
+
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     banco.mostrarExtrato(pessoaCliente, 0);
     String esperadoPoupanca = "5000";
     assertEquals(esperadoPoupanca, output.toString());
+
+    System.setOut(new PrintStream(output));
+
     banco.mostrarExtrato(pessoaCliente, 1);
     String esperadoCorrente = "10000";
     assertEquals(esperadoCorrente, output.toString());
 
     banco.transferirFundos(pessoaCliente, 1, 0, 5000);
+
+    System.setOut(new PrintStream(output));
+
     banco.mostrarExtrato(pessoaCliente, 0);
     esperadoPoupanca = "10000";
     assertEquals(esperadoPoupanca, output.toString());
+
+    System.setOut(new PrintStream(output));
+
     banco.mostrarExtrato(pessoaCliente, 1);
     esperadoCorrente = "5000";
     assertEquals(esperadoCorrente, output.toString());
@@ -98,10 +108,6 @@ class BancoTest {
   @Test
   @DisplayName("5 - Testa se o método sacar está funcionando corretamente.")
   void depositarTestSacarTestMostrarExtratoTest() {
-    ByteArrayOutputStream output = new ByteArrayOutputStream();
-    PrintStream ps = System.out;
-    System.setOut(new PrintStream(output));
-
     final Banco banco = new Banco();
 
     final PessoaCliente pessoaCliente = new PessoaCliente(
@@ -112,6 +118,11 @@ class BancoTest {
 
     banco.depositar(pessoaCliente, 0, 15000);
     banco.sacar(pessoaCliente, 0, 10000);
+
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+    PrintStream ps = System.out;
+    System.setOut(new PrintStream(output));
+
     banco.mostrarExtrato(pessoaCliente, 0);
 
     String saldoEsperado = "5000";
