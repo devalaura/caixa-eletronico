@@ -88,6 +88,22 @@ public class PessoaCliente {
   }
 
   /**
+   * Método para validar a senha da pessoa cliente que está tentando acessar o
+   * sistema. Seu retorno é booleano, "true" quando a senha é válida e "false"
+   * quando não.
+   * 
+   * @param senha // Recebe a senha inserida pela pessoa que está tentando acessar
+   *              a conta.
+   */
+  public boolean validarSenha(String senha) {
+    if (this.senha == senha) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
    * Método get do atributo privado nomeCompleto, que armazena o nome da pessoa
    * cliente.
    */
