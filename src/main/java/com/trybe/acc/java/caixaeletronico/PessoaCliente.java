@@ -36,6 +36,14 @@ public class PessoaCliente {
   }
 
   /**
+   * Método para contar a quantidade de elementos da lista de contas da pessoa
+   * cliente. Esse método não recebe parametros e retorna um número inteiro.
+   */
+  public int retornaNumeroDeContas() {
+    return this.contas.size();
+  }
+
+  /**
    * Método para filtrar a conta pelo índice e chamar o método que retorna o
    * extrato. Esse método não possui retorno.
    * 
