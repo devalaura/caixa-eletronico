@@ -89,7 +89,6 @@ class PessoaClienteTest {
     Conta conta = new Conta("Poupança", pessoaCliente, banco);
     pessoaCliente.adicionarConta(conta);
 
-    assertFalse(pessoaCliente.retornarIdContaEspecifica(0).isEmpty());
     assertEquals(10, pessoaCliente.retornarIdContaEspecifica(0).length());
     assertEquals("String", pessoaCliente.retornarIdContaEspecifica(0).getClass().getSimpleName());
   }

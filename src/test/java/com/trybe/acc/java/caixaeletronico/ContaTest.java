@@ -137,7 +137,6 @@ class ContaTest {
         "Laura Ramos", "123.456.789-10", "SenhaSegura123");
     final Conta conta = new Conta("Poupança", pessoaCliente, banco);
 
-    assertFalse(conta.getIdConta().isEmpty());
     assertEquals(10, conta.getIdConta().length());
     assertEquals("String", conta.getIdConta().getClass().getSimpleName());
   }

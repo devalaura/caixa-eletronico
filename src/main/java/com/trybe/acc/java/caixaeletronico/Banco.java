@@ -18,7 +18,7 @@ public class Banco {
 
     for (int i = 0; i < 10; i++) {
       String digito = Integer.toString(random.nextInt());
-      numeroConta.concat(digito);
+      numeroConta += digito;
     }
 
     for (Conta conta : this.contas) {

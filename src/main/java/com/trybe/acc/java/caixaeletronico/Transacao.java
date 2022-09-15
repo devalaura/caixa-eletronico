@@ -41,18 +41,18 @@ public class Transacao {
   public String retornarResumoTransacao() {
     String modificador = "";
     if (this.getDescricao().contains("Depósito")) {
-      modificador = "+";
+      modificador = " +";
     } else if (this.getDescricao().contains("recebida")) {
-      modificador = "+";
+      modificador = " +";
     } else {
-      modificador = "-";
+      modificador = " -";
     }
 
     final String resumo = new StringBuilder("")
         .append(this.getInstante())
         .append(" -------- ")
         .append(this.getDescricao())
-        .append("R$ ")
+        .append(" R$ ")
         .append(this.getQuantia())
         .append(modificador)
         .toString();

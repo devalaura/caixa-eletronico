@@ -51,9 +51,9 @@ class TransacaoTest {
         .append(dataAtualFormatada)
         .append(" -------- ")
         .append(descricao)
-        .append("R$")
+        .append(" R$ ")
         .append(quantia)
-        .append("+")
+        .append(" +")
         .toString();
 
     assertEquals(resumoEsperado, novaTransacao.retornarResumoTransacao());
