@@ -104,6 +104,18 @@ public class PessoaCliente {
   }
 
   /**
+   * Método para imprimir no console o resumo de todas as contas da lista de
+   * contas. Esse método não recebe parametros e não tem retorno.
+   */
+  public void retornarResumoContas() {
+    int contador = 1;
+    for (Conta conta : this.contas) {
+      System.out.printf("%s) %s", contador, conta.retornarResumoConta());
+      contador++;
+    }
+  }
+
+  /**
    * Método get do atributo privado nomeCompleto, que armazena o nome da pessoa
    * cliente.
    */
