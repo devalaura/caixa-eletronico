@@ -64,11 +64,10 @@ public class PessoaCliente {
   }
 
   /**
-   * Método para filtrar a conta pelo índice e chamar o método que retorna o
-   * extrato. Esse método não possui retorno.
+   * Método para criar o extrato de uma conta específica. Esse método não possui
+   * retorno.
    * 
-   * @param indice // Recebe um inteiro que representa o índice da conta na lista
-   *               de contas.
+   * @param indice // Recebe o índice da conta dentro da lista de contas.
    */
   public void retornarExtratoContaEspecifica(int indice) {
     Conta contaEspecifica = this.contas.get(indice);
