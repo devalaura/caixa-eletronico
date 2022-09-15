@@ -134,7 +134,6 @@ class ContaTest {
     final Conta conta = new Conta("Poupança", pessoaCliente, banco);
 
     assertEquals(10, conta.getIdConta().length());
-    assertEquals("String", conta.getIdConta().getClass().getSimpleName());
   }
 
   @Test
